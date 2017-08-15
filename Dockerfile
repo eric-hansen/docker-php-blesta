@@ -1,9 +1,9 @@
-FROM php:5.6-apache
+FROM php:5.6-alpine
 
 # Package installs
-RUN apt-get update && apt-get install -y unzip php5-gmp php5-mcrypt libxml2 libcurl4-openssl-dev libgmp-dev libgd-dev libc-client-dev libkrb5-dev libmcrypt-dev && rm -r /var/lib/apt/lists/*
+RUN apk upgrade --update && apk add --no-cache gcc autoconf coreutils unzip php5-gmp php5-mcrypt libxml2 curl-dev gmp-dev gd-dev krb5-dev libmcrypt-dev
 
-RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
+#RUN ln -s /usr/include/x86_64-linux-gnu/gmp.h /usr/include/gmp.h
 
 # PECL installs
 RUN pecl install mailparse-2.1.6
@@ -12,8 +12,6 @@ RUN pecl install mailparse-2.1.6
 RUN docker-php-ext-configure imap --with-kerberos --with-imap-ssl
 RUN docker-php-ext-enable mailparse
 RUN docker-php-ext-install pdo pdo_mysql curl imap gmp mbstring mcrypt gd
-
-RUN apt-get clean
 
 # Download the version of Blesta and unzip it, then remove the zip file
 RUN curl -s -O https://account.blesta.com/client/plugin/download_manager/client_main/download/91/blesta-4.0.0.zip && unzip -qq blesta-4.0.0.zip && rm blesta-4.0.0.zip
