@@ -7,7 +7,7 @@ A Docker for [Blesta](https://www.blesta.com).
 * Install [Docker](https://www.docker.com) for your system
 * Run `docker build .` inside of this directory
 * Run `docker container start <container ID/hash>`
-* Open up `http://<container IP>/blesta` in your browser
+* Open up `http://<container IP>/` in your browser
 
 ## Notes
 
@@ -19,5 +19,4 @@ A Docker for [Blesta](https://www.blesta.com).
 
 ## TODO
 
-- [ ] Do a better job of downloading Blesta so you don't have to go /blesta
 - [ ] Work on PHP 7.0 support
