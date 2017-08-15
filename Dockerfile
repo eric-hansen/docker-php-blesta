@@ -16,7 +16,13 @@ RUN docker-php-ext-install pdo pdo_mysql curl imap gmp mbstring mcrypt gd
 RUN apt-get clean
 
 # Download the version of Blesta and unzip it, then remove the zip file
-RUN curl -s -O https://account.blesta.com/client/plugin/download_manager/client_main/download/91/blesta-4.0.0.zip && unzip -qq blesta-4.0.0.zip && rm blesta-4.0.0.zip
+RUN cd /tmp \
+    && curl -s -O https://account.blesta.com/client/plugin/download_manager/client_main/download/91/blesta-4.0.0.zip \
+    && unzip -qq blesta-4.0.0.zip \
+    && rm blesta-4.0.0.zip \
+    && mv uploads /var/www \
+    && mv blesta/* blesta/.h* /var/www/html
+
 RUN chown -R www-data: /var/www/html
 
 # ionCube support
