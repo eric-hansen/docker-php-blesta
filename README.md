@@ -18,5 +18,5 @@ A Docker for [Blesta](https://www.blesta.com).
 
 ## TODO
 
-[ ] Do a better job of downloading Blesta so you don't have to go /blesta
-[ ] Work on PHP 7.0 support
+- [ ] Do a better job of downloading Blesta so you don't have to go /blesta
+- [ ] Work on PHP 7.0 support
